@@ -1,0 +1,233 @@
+<ng-container
+  *ngIf="house && !editView"
+>
+  <h1>{{house.title}}</h1>
+  <h1>Status: {{house.status}}</h1>
+  <h2>{{house.address}}</h2>
+  <h3>Rent: {{house.rent | currency:'USD':true:'1.0-0'}}</h3>
+  <h4>Beds: {{house.bedroomCount}}</h4>
+  <h4>Bath: {{house.bathroomCount}}</h4>
+  <a href="{{house.url}}"><h4>Link</h4></a>
+  <img src="{{house.picUrl}}"/>
+
+  <h3>Description</h3>
+  <p>
+    {{house.description}}
+  </p>
+  <p>Deposit: {{house.deposit}}</p>
+  <p>Available: {{house.availableDate}}</p>
+  <p>Lease Min Years: {{house.leaseReq}}</p>
+  <p>Size: {{house.size}}</p>
+  <p>Garage: {{house.garage}}</p>
+  <p>Parking: {{house.parking}}</p>
+  <p>Laundry: {{house.laundry}}</p>
+  <p>Pets: {{house.pets}}</p>
+
+  <ng-container *ngIf="house.approvals.length">
+    <h3>Approvals</h3>
+    <ul>
+      <li
+        *ngFor="let approval of house.approvals"
+      >
+        {{approval.name}} : {{approval.approval}}
+      </li>
+    </ul>
+  </ng-container>
+
+  <h3>Contact</h3>
+  <p>Company: {{house.company}}</p>
+  <p>Contact Name: {{house.contactName}}</p>
+  <p>Contact Info: {{house.contactInfo}}</p>
+  <p>Contacted: {{house.contacted}}</p>
+</ng-container>
+
+<ng-container
+  *ngIf="editView"
+>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.title"
+      placeholder="Title"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.status"
+      placeholder="Status"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.address"
+      placeholder="Address"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      type="number"
+      mdInput [(ngModel)]="editHouse.rent"
+      placeholder="Rent"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      type="number"
+      mdInput [(ngModel)]="editHouse.deposit"
+      placeholder="Deposit"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      type="number"
+      mdInput [(ngModel)]="editHouse.bedroomCount"
+      placeholder="Beds"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      type="number"
+      mdInput [(ngModel)]="editHouse.bathroomCount"
+      placeholder="Bath"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      type="url"
+      mdInput [(ngModel)]="editHouse.url"
+      placeholder="URL"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      type="url"
+      mdInput [(ngModel)]="editHouse.picUrl"
+      placeholder="Pic URL"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <textarea class="block"
+      mdInput [(ngModel)]="editHouse.description"
+      placeholder="Description"
+    ></textarea>
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.availableDate"
+      placeholder="Available"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      type="number"
+      mdInput [(ngModel)]="editHouse.leaseReq"
+      placeholder="Lease Min Years"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      type="number"
+      mdInput [(ngModel)]="editHouse.size"
+      placeholder="Size"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      mdInput [(ngModel)]="editHouse.garage"
+      placeholder="Garage"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      mdInput [(ngModel)]="editHouse.parking"
+      placeholder="Parking"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      mdInput [(ngModel)]="editHouse.laundry"
+      placeholder="Laundry"
+    >
+  </md-input-container>
+
+  <md-input-container class="half-block">
+    <input
+      mdInput [(ngModel)]="editHouse.pets"
+      placeholder="Pets"
+    >
+  </md-input-container>
+
+  <h3>Contact</h3>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.company"
+      placeholder="Company"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.contactName"
+      placeholder="Contact Name"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.contactInfo"
+      placeholder="Contact Info"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="editHouse.contacted"
+      placeholder="Contacted"
+    >
+  </md-input-container>
+
+</ng-container>
+
+<md-icon
+  class="circle-button second"
+  (click)="toggleEdit()">
+
+  <ng-container *ngIf="!editView">
+    edit
+  </ng-container>
+
+  <ng-container *ngIf="editView">
+    close
+  </ng-container>
+
+</md-icon>
+
+<md-icon
+  *ngIf="!editView"
+  class="circle-button"
+ (click)="goBack()">
+  arrow_back
+</md-icon>
+
+<md-icon
+  *ngIf="editView"
+  class="circle-button"
+  (click)="updateHouse()">
+  save
+</md-icon>

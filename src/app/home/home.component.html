@@ -1,0 +1,49 @@
+<add-house
+  *ngIf="addingHouse"
+  (closeMe)="closeMeTriggered($event)"
+></add-house>
+
+<md-icon class="circle-button" (click)="toggleForm()">
+  <ng-container
+    *ngIf="addingHouse"
+  >close</ng-container>
+  <ng-container
+    *ngIf="!addingHouse"
+  >add</ng-container>
+</md-icon>
+
+<ng-container
+  *ngIf="!addingHouse"
+>
+
+  <md-card class="card"
+           *ngFor="let house of houseArray"
+  >
+    <md-card-header>
+      <md-card-title>
+        <h2>{{ house.title }}</h2>
+      </md-card-title>
+      <md-card-subtitle>
+        <h3>{{house.address}}</h3>
+      </md-card-subtitle>
+      <md-card-subtitle>
+        <h4>{{house.rent | currency:'USD':true:'1.0-0'}}</h4>
+      </md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src="{{house.picUrl}}">
+    <md-card-content>
+      <p class="description">
+        {{house.description}}
+      </p>
+    </md-card-content>
+    <md-card-actions>
+      <a href="{{house.url}}"><button md-button>Link</button></a>
+      <button md-button
+        [routerLink]="['/house', house._id]"
+      >VIEW</button>
+    </md-card-actions>
+  </md-card>
+
+</ng-container>
+
+

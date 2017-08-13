@@ -1,0 +1,44 @@
+<md-card>
+
+  <md-card-header>
+    <md-card-title>
+      <h1>Add House</h1>
+    </md-card-title>
+  </md-card-header>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="newHouse.url"
+      placeholder="URL (required)"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="newHouse.address"
+      placeholder="Address"
+    >
+  </md-input-container>
+
+  <md-input-container class="block">
+    <input
+      mdInput [(ngModel)]="newHouse.picUrl"
+      placeholder="Picture URL"
+    >
+  </md-input-container>
+
+  <md-input-container  class="block">
+    <input
+      mdInput [(ngModel)]="newHouse.rent"
+      placeholder="Rent"
+      type="number"
+    >
+  </md-input-container>
+
+  <md-card-actions>
+    <button md-button
+      (click)="addHouseClicked()"
+    >Add House</button>
+  </md-card-actions>
+
+</md-card>
